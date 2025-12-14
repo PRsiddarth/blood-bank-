@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Blood Inventory - Blood Bank Donation{% endblock %}
+
+{% block content %}
+<h2>Blood Inventory</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Blood Type</th>
+            <th>Quantity (ml)</th>
+            <th>Expiry Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in inventory %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.blood_type.type if item.blood_type else 'N/A' }}</td>
+            <td>{{ item.quantity_ml }}</td>
+            <td>{{ item.expiry_date.strftime('%Y-%m-%d') if item.expiry_date else 'N/A' }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

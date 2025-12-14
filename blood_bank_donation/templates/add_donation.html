@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Add Donation - Blood Bank Donation{% endblock %}
+
+{% block content %}
+<h2>Add New Donation</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label for="donor" class="form-label">Donor</label>
+        <select class="form-control" id="donor" name="donor" required>
+            {% for donor in donors %}
+            <option value="{{ donor.id }}">{{ donor.name }} ({{ donor.blood_type.type if donor.blood_type else 'N/A' }})</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="donation_date" class="form-label">Donation Date</label>
+        <input type="date" class="form-control" id="donation_date" name="donation_date" required>
+    </div>
+    <div class="mb-3">
+        <label for="quantity_ml" class="form-label">Quantity (ml)</label>
+        <input type="number" class="form-control" id="quantity_ml" name="quantity_ml" required>
+    </div>
+    <div class="mb-3">
+        <label for="blood_type" class="form-label">Blood Type</label>
+        <select class="form-control" id="blood_type" name="blood_type" required>
+            {% for blood_type in blood_types %}
+            <option value="{{ blood_type.id }}">{{ blood_type.type }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="notes" class="form-label">Notes</label>
+        <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Donation</button>
+    <a href="{{ url_for('donations') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Blood Bank Donation{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron bg-light p-5 rounded">
+            <h1 class="display-4">Welcome to Blood Bank Donation System</h1>
+            <p class="lead">Save lives by donating blood. Every donation counts!</p>
+            <hr class="my-4">
+            <p>Manage donors, track donations, and monitor blood inventory.</p>
+            <a class="btn btn-primary btn-lg" href="{{ url_for('add_donor') }}" role="button">Register as Donor</a>
+            <a class="btn btn-success btn-lg" href="{{ url_for('add_donation') }}" role="button">Make a Donation</a>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total Donors</h5>
+                <p class="card-text" id="total-donors">Loading...</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total Donations</h5>
+                <p class="card-text" id="total-donations">Loading...</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Blood Inventory</h5>
+                <p class="card-text" id="total-inventory">Loading...</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

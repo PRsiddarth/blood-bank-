@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Add Donor - Blood Bank Donation{% endblock %}
+
+{% block content %}
+<h2>Add New Donor</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+    <div class="mb-3">
+        <label for="age" class="form-label">Age</label>
+        <input type="number" class="form-control" id="age" name="age" required>
+    </div>
+    <div class="mb-3">
+        <label for="gender" class="form-label">Gender</label>
+        <select class="form-control" id="gender" name="gender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="blood_type" class="form-label">Blood Type</label>
+        <select class="form-control" id="blood_type" name="blood_type" required>
+            {% for blood_type in blood_types %}
+            <option value="{{ blood_type.id }}">{{ blood_type.type }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="phone" class="form-label">Phone</label>
+        <input type="tel" class="form-control" id="phone" name="phone">
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="email">
+    </div>
+    <div class="mb-3">
+        <label for="address" class="form-label">Address</label>
+        <textarea class="form-control" id="address" name="address" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Donor</button>
+    <a href="{{ url_for('donors') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

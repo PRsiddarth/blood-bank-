@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Donors - Blood Bank Donation{% endblock %}
+
+{% block content %}
+<h2>Donors List</h2>
+<a href="{{ url_for('add_donor') }}" class="btn btn-primary mb-3">Add New Donor</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Blood Type</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Last Donation</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for donor in donors %}
+        <tr>
+            <td>{{ donor.id }}</td>
+            <td>{{ donor.name }}</td>
+            <td>{{ donor.age }}</td>
+            <td>{{ donor.gender }}</td>
+            <td>{{ donor.blood_type.type if donor.blood_type else 'N/A' }}</td>
+            <td>{{ donor.phone or 'N/A' }}</td>
+            <td>{{ donor.email or 'N/A' }}</td>
+            <td>{{ donor.last_donation_date.strftime('%Y-%m-%d') if donor.last_donation_date else 'N/A' }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
